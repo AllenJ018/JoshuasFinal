@@ -30,6 +30,7 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
     private int[] vendorData;
     private Object[] itemRefVars = new Object[5];
     private ArrayList<AnItem> itemList = new ArrayList<>();
+    private String[] vendorDataReworked;
 
    /* public FetchItem(Object[] itemref) {
         this.mItemRefVars = new WeakReference<>(itemref);
@@ -71,6 +72,7 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
             typeData = new String[itemData.length()];
             iconData = new String[itemData.length()];
             rarityData = new String[itemData.length()];
+            vendorDataReworked = new String[itemData.length()];
             vendorData = new int[itemData.length()];
             for(int i=0; i< itemData.length(); i++) {
                 JSONObject jsonObj = itemData.getJSONObject(i);
@@ -79,8 +81,33 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
                 iconData[i] = jsonObj.getString("icon");
                 rarityData[i] = jsonObj.getString("rarity");
                 vendorData[i] = jsonObj.getInt("vendor_value");
-                itemList.add(new AnItem(nameData[i], typeData[i], iconData[i], rarityData[i], vendorData[i]));
+                    if(vendorData[i]<100)
+                        vendorDataReworked[i] = (String.valueOf(vendorData[i])+ " Copper" );
+                    else if(vendorData[i]<1000){
+                        int vendorHolder = vendorData[i];
+                        while (vendorHolder > 9) {
+                            vendorHolder /= 10;
+                        }
+                        int silver = vendorHolder;
+                        vendorDataReworked[i] = (String.valueOf(silver) + " Silver " + " and " + String.valueOf(vendorData[i] - (silver * 100)) + " Copper");
+                    }
+                    else {
+                        int vendorHolder = vendorData[i];
+                        while (vendorHolder > 9) {
+                            vendorHolder /= 10;
+                        }
+                        int gold = vendorHolder;
+                        vendorHolder = vendorData[i] - gold;
+                        while (vendorHolder > 9) {
+                            vendorHolder /= 10;
+                        }
+                        int silver = vendorHolder;
 
+                        vendorDataReworked[i] = ("Gold " + String.valueOf(gold) + " " + String.valueOf(silver) +
+                                "silver" + " and " + String.valueOf(vendorData[i] - ((silver * 100) + (gold * 100))) + " copper");
+
+                    }
+                itemList.add(new AnItem(nameData[i], typeData[i], rarityData[i], vendorDataReworked[i], iconData[i]));
             }
         } catch (JSONException e) {
             e.printStackTrace();

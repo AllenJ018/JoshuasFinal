@@ -17,10 +17,6 @@
         android:layout_height="wrap_content"
         android:text="typeView" />
 
-    <TextView android:id="@+id/iconView"
-        android:text = ""
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></TextView>
 
     <TextView
         android:id="@+id/rarityView"
@@ -34,5 +30,9 @@
         android:layout_height="wrap_content"
         android:text="vendorView" />
 
+    <ImageView android:id="@+id/iconView"
+        android:layout_width = "65dp"
+        android:layout_height= "65dp"
+        ></ImageView>
 
 </LinearLayout>

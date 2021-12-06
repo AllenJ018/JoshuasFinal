@@ -1,12 +1,16 @@
 package edu.mssu.cis385.afinal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -46,32 +50,37 @@ public class dataDisplay extends AppCompatActivity {
         Intent intent = getIntent();
         mNumberChoosen = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         try {
-            /*
-            new FetchItem(mItemRefVar).execute(mNumberChoosen);
-            mNameData = (String[]) mItemRefVar[0];
-            mTypeData = (String[]) mItemRefVar[1];
-            mIconData = (String[]) mItemRefVar[2];
-            mRarityData = (String[]) mItemRefVar[3];
-            mVendorData = (int[]) mItemRefVar[4];
-            ListPopulation();
-            */
-           // new FetchItem(itemList).onPostExecute(mNumberChoosen);
             new FetchItem(listAdapter, mRecyclerView).execute(mNumberChoosen);
         } catch (Exception e) {
             Log.d(LOG_BAT, "mNameData is null");
         }
-/*
-        listAdapter = new RecAdapter(itemList, this);
-        mRecyclerView.setAdapter(listAdapter);
-*/
-
     }
 
-    private void ListPopulation() {
-        if (mNameData == null) {
-            for (int i = 0; i < mNameData.length; i++) {
-                itemList.add(new AnItem(mNameData[i], mTypeData[i], mIconData[i], mRarityData[i], mVendorData[i]));
+    @SuppressLint("ResourceAsColor")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId()==R.id.darkMode){
+            int darkMode = AppCompatDelegate.getDefaultNightMode();
+            if(darkMode == AppCompatDelegate.MODE_NIGHT_YES){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            } else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             }
+            recreate();
         }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        int darkMode = AppCompatDelegate.getDefaultNightMode();
+        if(darkMode == AppCompatDelegate.MODE_NIGHT_YES){
+            menu.findItem(R.id.darkMode).setTitle(R.string.dark_mode);
+
+        }else{
+            menu.findItem(R.id.darkMode).setTitle(R.string.dark_mode);
+        }
+        return true;
     }
 }

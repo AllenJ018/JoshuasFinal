@@ -5,9 +5,9 @@ public class AnItem {
     private String type;
     private String icon;
     private String rarity;
-    private int vendor;
+    private String vendor;
 
-    public AnItem(String name, String type, String icon, String rarity, int vendor){
+    public AnItem(String name, String type, String rarity, String vendor, String icon){
         this.name = name;
         this.type = type;
         this.icon = icon;
@@ -48,13 +48,14 @@ public class AnItem {
         this.rarity = rarity;
     }
 
-    public int getVendor() {
+    public String getVendor() {
         return vendor;
     }
 
-    public void setVendor(int vendor) {
+    public void setVendor(String vendor) {
         this.vendor = vendor;
     }
+
 
     @Override
     public String toString() {

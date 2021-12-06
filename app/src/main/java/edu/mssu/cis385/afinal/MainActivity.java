@@ -90,16 +90,8 @@ public class MainActivity extends AppCompatActivity {
             int darkMode = AppCompatDelegate.getDefaultNightMode();
             if(darkMode == AppCompatDelegate.MODE_NIGHT_YES){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-               /* mPageInput.setTextColor(Color.parseColor("#000000"));
-                mTitle.setTextColor(Color.parseColor("#000000"));
-                mainActivity.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
-                mExecute.setTextColor(Color.parseColor("#000000"));*/
             } else{
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-              /*  mPageInput.setTextColor(Color.parseColor("#FFFFFFFF"));
-                mTitle.setTextColor(Color.parseColor("#FFFFFFFF"));
-                mainActivity.setBackgroundColor(Color.parseColor("#000000"));
-                mExecute.setTextColor(Color.parseColor("#FFFFFFFF"));*/
             }
             recreate();
         }

@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
@@ -50,7 +52,7 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
     public class ItemHolder extends RecyclerView.ViewHolder {
         public TextView txtName;
         public TextView txtType;
-        public TextView txtIcon;
+        public ImageView txtIcon;
         public TextView txtRarity;
         public TextView txtVendor;
 
@@ -66,7 +68,8 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
 
         public void setItemName(String name)
         {
-            String text = "Item Name: " + name;
+            String text = "\n" +"----------------------------------------------------------" + "\n\n\n" +
+                    "Item Name: " + name;
             txtName.setText(text);
         }
 
@@ -76,11 +79,6 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
             txtType.setText(text);
         }
 
-        public void setItemIcon(String icon)
-        {
-
-            txtIcon.setText(icon);
-        }
 
         public void setItemRarity(String rarity)
         {
@@ -88,10 +86,47 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
             txtRarity.setText(text);
         }
 
-        public void setItemVendor(int vendor)
+        public void setItemVendor(String vendor)
         {
-            String text = "Vendor Value: " + String.valueOf(vendor);
+           // String vendorValue = toStringVendor(vendor);
+            //String text = "Vendor Value: " + String.valueOf(vendor) + "\n";
+            String text = "Vendor Value: " + vendor + "\n";
             txtVendor.setText(text);
+        }
+
+        public void setItemIcon(String icon)
+        {
+            Glide.with(mContext).load(icon).into(txtIcon);
+
+        }
+
+        public String toStringVendor(int vendor){
+
+            if(vendor<100)
+                return (String.valueOf(vendor)+ " Copper" );
+            else if(vendor<1000){
+                int vendorHolder = vendor;
+                while (vendorHolder > 9) {
+                    vendorHolder /= 10;
+                }
+                int silver = vendorHolder;
+                return (String.valueOf(silver) + " Silver " + " and " + String.valueOf(vendor - (silver * 100)) + " Copper");
+            }
+            else
+            {
+                int vendorHolder = vendor;
+                while (vendorHolder > 9) {
+                    vendorHolder /= 10;
+                }
+                int gold = vendorHolder;
+                vendorHolder = vendor - gold;
+                while (vendorHolder > 9) {
+                    vendorHolder /= 10;
+                }
+                int silver = vendorHolder;
+
+                return ("Gold " + String.valueOf(gold) + " " + String.valueOf(silver) + "silver" + " and " + String.valueOf(vendor - ((silver * 100) + (gold * 100))) + " copper");
+            }
         }
     }
 }
