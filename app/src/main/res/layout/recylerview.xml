@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width ="match_parent"
+    android:layout_height ="wrap_content"
+    android:orientation ="vertical"
+    android:padding ="@dimen/oneItemPadding">
+
+    <TextView
+        android:id="@+id/nameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NameView" />
+
+    <TextView
+        android:id="@+id/typeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="typeView" />
+
+    <TextView android:id="@+id/iconView"
+        android:text = ""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></TextView>
+
+    <TextView
+        android:id="@+id/rarityView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rarityView" />
+
+    <TextView
+        android:id="@+id/vendorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="vendorView" />
+
+
+</LinearLayout>
