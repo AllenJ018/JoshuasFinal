@@ -1,11 +1,19 @@
 package edu.mssu.cis385.afinal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +34,10 @@ import java.lang.ref.WeakReference;
 public class MainActivity extends AppCompatActivity {
 
     private EditText mPageInput;
+    private TextView mTitle;
+    private ConstraintLayout mainActivity;
+    private Button mExecute;
+
     public static final String EXTRA_MESSAGE =
             "edu.mssu.cis385.afinal.extra.MESSAGE";
 
@@ -33,7 +45,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPageInput = (EditText)findViewById(R.id.pageInput);
+        mPageInput = findViewById(R.id.takeInput);
+        mTitle = findViewById(R.id.search_title);
+        mainActivity = findViewById(R.id.main_activity);
+        mExecute = findViewById(R.id.searchButton);
     }
 
     public void searchItems(View view) {
@@ -65,4 +80,43 @@ public class MainActivity extends AppCompatActivity {
                         }
                 } catch (Exception e) {}
     }
+
+
+
+    @SuppressLint("ResourceAsColor")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId()==R.id.darkMode){
+            int darkMode = AppCompatDelegate.getDefaultNightMode();
+            if(darkMode == AppCompatDelegate.MODE_NIGHT_YES){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+               /* mPageInput.setTextColor(Color.parseColor("#000000"));
+                mTitle.setTextColor(Color.parseColor("#000000"));
+                mainActivity.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+                mExecute.setTextColor(Color.parseColor("#000000"));*/
+            } else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+              /*  mPageInput.setTextColor(Color.parseColor("#FFFFFFFF"));
+                mTitle.setTextColor(Color.parseColor("#FFFFFFFF"));
+                mainActivity.setBackgroundColor(Color.parseColor("#000000"));
+                mExecute.setTextColor(Color.parseColor("#FFFFFFFF"));*/
+            }
+            recreate();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        int darkMode = AppCompatDelegate.getDefaultNightMode();
+        if(darkMode == AppCompatDelegate.MODE_NIGHT_YES){
+            menu.findItem(R.id.darkMode).setTitle(R.string.dark_mode);
+
+        }else{
+            menu.findItem(R.id.darkMode).setTitle(R.string.dark_mode);
+        }
+        return true;
+    }
+
 }

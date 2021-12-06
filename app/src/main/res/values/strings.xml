@@ -2,6 +2,8 @@
     <string name="app_name">Final</string>
     <string name="no_results">No Results Found</string>
     <string name="search">Guild Wars 2 Items</string>
-    <string name="input_hint">Enter a page to look at, 1 through 304</string>
+    <string name="input_hint">Enter a page to look at, 0 through 304</string>
     <string name="button_text">Execute</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="light_mode">Light Mode</string>
 </resources>
