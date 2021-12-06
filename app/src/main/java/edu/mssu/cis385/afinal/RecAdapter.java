@@ -21,6 +21,9 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
         this.mContext = mContext;
     }
 
+    public void setItemList(ArrayList<AnItem> itemList) {
+        this.itemList = itemList;
+    }
 
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -63,27 +66,32 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
 
         public void setItemName(String name)
         {
-            txtName.setText(name);
+            String text = "Item Name: " + name;
+            txtName.setText(text);
         }
 
         public void setItemType(String type)
         {
-            txtType.setText(type);
+            String text = "Item type: " + type;
+            txtType.setText(text);
         }
 
         public void setItemIcon(String icon)
         {
+
             txtIcon.setText(icon);
         }
 
         public void setItemRarity(String rarity)
         {
-            txtRarity.setText(rarity);
+            String text = "Item Rarity: " + rarity;
+            txtRarity.setText(text);
         }
 
         public void setItemVendor(int vendor)
         {
-            txtVendor.setText(vendor);
+            String text = "Vendor Value: " + String.valueOf(vendor);
+            txtVendor.setText(text);
         }
     }
 }

@@ -52,6 +52,7 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
     @Override
     protected void onPostExecute(ArrayList<AnItem> anItems) {
         super.onPostExecute(anItems);
+        listAdapter.get().setItemList(itemList);
 
         mRecyclerView.get().setAdapter(listAdapter.get());
 
