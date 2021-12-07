@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         int darkMode = AppCompatDelegate.getDefaultNightMode();
         if(darkMode == AppCompatDelegate.MODE_NIGHT_YES){
-            menu.findItem(R.id.darkMode).setTitle(R.string.dark_mode);
+            menu.findItem(R.id.darkMode).setTitle(R.string.light_mode);
 
         }else{
             menu.findItem(R.id.darkMode).setTitle(R.string.dark_mode);

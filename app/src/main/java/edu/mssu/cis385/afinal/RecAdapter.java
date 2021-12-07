@@ -87,10 +87,7 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
         }
 
         public void setItemVendor(String vendor)
-        {
-           // String vendorValue = toStringVendor(vendor);
-            //String text = "Vendor Value: " + String.valueOf(vendor) + "\n";
-            String text = "Vendor Value: " + vendor + "\n";
+        { String text = "Vendor Value: " + vendor + "\n";
             txtVendor.setText(text);
         }
 

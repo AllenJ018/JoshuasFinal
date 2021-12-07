@@ -32,15 +32,14 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
     private ArrayList<AnItem> itemList = new ArrayList<>();
     private String[] vendorDataReworked;
 
-   /* public FetchItem(Object[] itemref) {
-        this.mItemRefVars = new WeakReference<>(itemref);
-    }*/
 
+    //initialize api data
     public FetchItem(RecAdapter listAdapter, RecyclerView recycler) {
         this.listAdapter = new WeakReference<>(listAdapter);
         this.mRecyclerView = new WeakReference<>(recycler);
     }
 
+    //get api data
     @Override
     protected ArrayList<AnItem> doInBackground(String... strings) {
 
@@ -50,11 +49,11 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
         return itemList;
     }
 
+    //set api data into recylcer view
     @Override
     protected void onPostExecute(ArrayList<AnItem> anItems) {
         super.onPostExecute(anItems);
         listAdapter.get().setItemList(itemList);
-
         mRecyclerView.get().setAdapter(listAdapter.get());
 
         for(int i = 0; i < itemList.size(); i++)
@@ -63,6 +62,7 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
         }
     }
 
+    //parse out aip data
     private void makeJsonElements(String s)
     {
 
@@ -74,45 +74,25 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
             rarityData = new String[itemData.length()];
             vendorDataReworked = new String[itemData.length()];
             vendorData = new int[itemData.length()];
-            for(int i=0; i< itemData.length(); i++) {
+            for (int i = 0; i < itemData.length(); i++) {
                 JSONObject jsonObj = itemData.getJSONObject(i);
                 nameData[i] = jsonObj.getString("name");
                 typeData[i] = jsonObj.getString("type");
                 iconData[i] = jsonObj.getString("icon");
                 rarityData[i] = jsonObj.getString("rarity");
                 vendorData[i] = jsonObj.getInt("vendor_value");
-                    if(vendorData[i]<100)
-                        vendorDataReworked[i] = (String.valueOf(vendorData[i])+ " Copper" );
-                    else if(vendorData[i]<1000){
-                        int vendorHolder = vendorData[i];
-                        while (vendorHolder > 9) {
-                            vendorHolder /= 10;
-                        }
-                        int silver = vendorHolder;
-                        vendorDataReworked[i] = (String.valueOf(silver) + " Silver " + " and " + String.valueOf(vendorData[i] - (silver * 100)) + " Copper");
-                    }
-                    else {
-                        int vendorHolder = vendorData[i];
-                        while (vendorHolder > 9) {
-                            vendorHolder /= 10;
-                        }
-                        int gold = vendorHolder;
-                        vendorHolder = vendorData[i] - gold;
-                        while (vendorHolder > 9) {
-                            vendorHolder /= 10;
-                        }
-                        int silver = vendorHolder;
 
-                        vendorDataReworked[i] = ("Gold " + String.valueOf(gold) + " " + String.valueOf(silver) +
-                                "silver" + " and " + String.valueOf(vendorData[i] - ((silver * 100) + (gold * 100))) + " copper");
-
-                    }
-                itemList.add(new AnItem(nameData[i], typeData[i], rarityData[i], vendorDataReworked[i], iconData[i]));
-            }
+                //turn int value into in game vendor value
+                vendorDataReworked[i] = AnItem.vendorStringConverter(vendorData[i]);
+            //put data into AnItem class called itemList
+            itemList.add(new AnItem(nameData[i], typeData[i], rarityData[i], vendorDataReworked[i], iconData[i]));
+        }
         } catch (JSONException e) {
             e.printStackTrace();
             System.out.println("makeJsonElements catch triggered");
         }
+
+        //move ref variables into 1 object, unused .....
         itemRefVars[0] = nameData;
         itemRefVars[1] = typeData;
         itemRefVars[2] = iconData;
@@ -120,4 +100,35 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
         itemRefVars[4] = vendorData;
 
     }
+
+    /*
+    public String vendorStringConverter(int vendorUnevaluated) {
+        //Convert vendor data into presentable currency
+        if (vendorUnevaluated < 100)
+            return (String.valueOf(vendorUnevaluated) + " Copper");
+        else if (vendorUnevaluated < 1000) {
+            int vendorHolder = vendorUnevaluated;
+            while (vendorHolder > 9) {
+                vendorHolder /= 10;
+            }
+            int silver = vendorHolder;
+            return (String.valueOf(silver) + " Silver " + " and " + String.valueOf(vendorUnevaluated - (silver * 100)) + " Copper");
+        } else {
+            int vendorHolder = vendorUnevaluated;
+            while (vendorHolder > 9) {
+                vendorHolder /= 10;
+            }
+            int gold = vendorHolder;
+            vendorHolder = vendorUnevaluated - gold;
+            while (vendorHolder > 9) {
+                vendorHolder /= 10;
+            }
+            int silver = vendorHolder;
+
+            return ("Gold " + String.valueOf(gold) + " " + String.valueOf(silver) +
+                    "silver" + " and " + String.valueOf(vendorUnevaluated - ((silver * 100) + (gold * 100))) + " copper");
+        }
+    }
+
+     */
 }
