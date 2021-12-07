@@ -68,8 +68,7 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
 
         public void setItemName(String name)
         {
-            String text = "\n" +"----------------------------------------------------------" + "\n\n\n" +
-                    "Item Name: " + name;
+            String text = "Item Name: " + name;
             txtName.setText(text);
         }
 
@@ -95,35 +94,6 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ItemHolder> {
         {
             Glide.with(mContext).load(icon).into(txtIcon);
 
-        }
-
-        public String toStringVendor(int vendor){
-
-            if(vendor<100)
-                return (String.valueOf(vendor)+ " Copper" );
-            else if(vendor<1000){
-                int vendorHolder = vendor;
-                while (vendorHolder > 9) {
-                    vendorHolder /= 10;
-                }
-                int silver = vendorHolder;
-                return (String.valueOf(silver) + " Silver " + " and " + String.valueOf(vendor - (silver * 100)) + " Copper");
-            }
-            else
-            {
-                int vendorHolder = vendor;
-                while (vendorHolder > 9) {
-                    vendorHolder /= 10;
-                }
-                int gold = vendorHolder;
-                vendorHolder = vendor - gold;
-                while (vendorHolder > 9) {
-                    vendorHolder /= 10;
-                }
-                int silver = vendorHolder;
-
-                return ("Gold " + String.valueOf(gold) + " " + String.valueOf(silver) + "silver" + " and " + String.valueOf(vendor - ((silver * 100) + (gold * 100))) + " copper");
-            }
         }
     }
 }

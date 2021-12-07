@@ -27,15 +27,17 @@ public class unitTest {
     //Test Validity of Strings after being put into AnItem class
     @Test
     public void inputAnItem_Test() {
-
         Assert.assertEquals(item.getName(), name);
         Assert.assertEquals(item.getType(), type);
         Assert.assertEquals(item.getRarity(), rarity);
         Assert.assertEquals(item.getVendor(), vendor);
         Assert.assertEquals(item.getIcon(), icon);
+    }
 
-        //failure case
-        //Assert.assertEquals(item.getName(), nameFail);
+    //Failure test for validity of AnItem.getters
+    @Test
+    public void inputAnItem_FailTest(){
+        Assert.assertNotEquals(item.getName(), nameFail);
     }
 
 
@@ -43,13 +45,16 @@ public class unitTest {
     @Test
     public void vendorConverter_Test(){
         String testExpected = "5 Silver and 0 Copper";
-        String testExpectedFail = "Fail";
         String testActual = AnItem.vendorStringConverter(Integer.parseInt(item.getVendor()));
         Assert.assertEquals(testExpected, testActual);
+    }
 
-
-        //failure case
-        //Assert.assertEquals(testExpectedFail, testActual);
+    //validity test to ensure correct information comes back
+    @Test
+    public void vendorConverter_FailTest(){
+        String testExpectedFail = "Fail";
+        String testActual = AnItem.vendorStringConverter(Integer.parseInt(item.getVendor()));
+        Assert.assertNotEquals(testExpectedFail, testActual);
     }
 
 
@@ -57,13 +62,13 @@ public class unitTest {
     @Test
     public void AnItem_toString_Test(){
         String testExpected = "AnItem{name='Name', type='Type', icon='https://render.guildwars2.com/file/C05DCA62E84D18EF46D5357C217956C55BC3063E/61013.png', rarity='Rarity', vendor=500}";
-        String testExpectedFail = "Fail";
         Assert.assertEquals(testExpected, item.toString());
+    }
 
-        //failure case
-        //Assert.assertEquals(testExpectedFail, item.toString());
-
-
-
+    //validity test of toString to ensure wrong inputs aren't accepted
+    @Test
+    public void AnItem_toString_FailTest(){
+        String testExpectedFail = "Fail";
+        Assert.assertNotEquals(testExpectedFail, item.toString());
     }
 }

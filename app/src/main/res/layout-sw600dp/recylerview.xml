@@ -30,9 +30,9 @@
         android:layout_height="wrap_content"
         android:text="vendorView" />
 
-    <ImageView android:id="@+id/iconView"
-        android:layout_width = "65dp"
-        android:layout_height= "65dp"
-        ></ImageView>
+    <ImageView
+        android:id="@+id/iconView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"></ImageView>
 
 </LinearLayout>

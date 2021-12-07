@@ -100,35 +100,4 @@ public class FetchItem extends AsyncTask<String, Void, ArrayList<AnItem>> {
         itemRefVars[4] = vendorData;
 
     }
-
-    /*
-    public String vendorStringConverter(int vendorUnevaluated) {
-        //Convert vendor data into presentable currency
-        if (vendorUnevaluated < 100)
-            return (String.valueOf(vendorUnevaluated) + " Copper");
-        else if (vendorUnevaluated < 1000) {
-            int vendorHolder = vendorUnevaluated;
-            while (vendorHolder > 9) {
-                vendorHolder /= 10;
-            }
-            int silver = vendorHolder;
-            return (String.valueOf(silver) + " Silver " + " and " + String.valueOf(vendorUnevaluated - (silver * 100)) + " Copper");
-        } else {
-            int vendorHolder = vendorUnevaluated;
-            while (vendorHolder > 9) {
-                vendorHolder /= 10;
-            }
-            int gold = vendorHolder;
-            vendorHolder = vendorUnevaluated - gold;
-            while (vendorHolder > 9) {
-                vendorHolder /= 10;
-            }
-            int silver = vendorHolder;
-
-            return ("Gold " + String.valueOf(gold) + " " + String.valueOf(silver) +
-                    "silver" + " and " + String.valueOf(vendorUnevaluated - ((silver * 100) + (gold * 100))) + " copper");
-        }
-    }
-
-     */
 }

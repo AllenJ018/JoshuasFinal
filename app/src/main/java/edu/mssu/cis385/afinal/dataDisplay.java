@@ -1,5 +1,6 @@
 package edu.mssu.cis385.afinal;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,12 +22,8 @@ import java.util.ArrayList;
 public class dataDisplay extends AppCompatActivity {
 
     private String mJsonString = "";
-    private String mNumberChoosen;
-    private String[] mNameData;
-    private String[] mTypeData;
-    private String[] mIconData;
-    private String[] mRarityData;
-    private int[] mVendorData;
+    private String mNumberChoosen ;
+    private String mNumberChecker ;
     private Object[] mItemRefVar = new Object[5];
     private RecyclerView mRecyclerView;
     private RecAdapter listAdapter;
@@ -49,11 +46,13 @@ public class dataDisplay extends AppCompatActivity {
         listAdapter = new RecAdapter(itemList, this);
         Intent intent = getIntent();
         mNumberChoosen = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        try {
-            new FetchItem(listAdapter, mRecyclerView).execute(mNumberChoosen);
-        } catch (Exception e) {
-            Log.d(LOG_BAT, "mNameData is null");
-        }
+            try {
+
+                new FetchItem(listAdapter, mRecyclerView).execute(mNumberChoosen);
+            } catch (Exception e) {
+                Log.d(LOG_BAT, "stuff broke");
+
+            }
     }
 
     @SuppressLint("ResourceAsColor")
@@ -82,5 +81,14 @@ public class dataDisplay extends AppCompatActivity {
             menu.findItem(R.id.darkMode).setTitle(R.string.dark_mode);
         }
         return true;
+    }
+
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    public void goBack(View view) {
+        finish();
     }
 }

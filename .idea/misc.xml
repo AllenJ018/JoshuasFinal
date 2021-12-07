@@ -6,8 +6,10 @@
         <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1140625" />
         <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1140625" />
         <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1140625" />
+        <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/layout-land/activity_data_display.xml" value="0.264" />
         <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/layout-land/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/layout-land/recylerview.xml" value="0.4" />
+        <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/layout-land/recylerview.xml" value="0.6" />
+        <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/layout-sw600dp/activity_data_display.xml" value="0.1" />
         <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.190625" />
         <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/layout-sw600dp/recylerview.xml" value="0.190625" />
         <entry key="..\:/Users/joshu/AndroidStudioProjects/Final/app/src/main/res/layout/activity_data_display.xml" value="0.264" />

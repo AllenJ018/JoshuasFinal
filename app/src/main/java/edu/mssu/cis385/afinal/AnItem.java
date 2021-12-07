@@ -85,14 +85,14 @@ public class AnItem {
                 vendorHolder /= 10;
             }
             int gold = vendorHolder;
-            vendorHolder = vendorUnevaluated - gold;
+            vendorHolder = vendorUnevaluated - (gold * 1000);
             while (vendorHolder > 9) {
                 vendorHolder /= 10;
             }
             int silver = vendorHolder;
 
-            return ("Gold " + String.valueOf(gold) + " " + String.valueOf(silver) +
-                    "silver" + " and " + String.valueOf(vendorUnevaluated - ((silver * 100) + (gold * 100))) + " copper");
+            return (String.valueOf(gold) + " Gold, " + String.valueOf(silver) +
+                    " Silver and " + String.valueOf(vendorUnevaluated - ((silver * 100) + (gold * 1000))) + " copper");
         }
     }
 }
